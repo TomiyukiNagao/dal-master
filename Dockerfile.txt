@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
-COPY . /faithcoin
-WORKDIR /faithcoin
+COPY . /dalcoin
+WORKDIR /dalcoin
 
 #shared libraries and dependencies
 RUN apt update
@@ -20,7 +20,7 @@ RUN apt-get install -y libminiupnpc-dev
 #ZMQ
 RUN apt-get install -y libzmq3-dev
 
-#build faithcoin source
+#build dalcoin source
 RUN ./autogen.sh
 RUN ./configure
 RUN make
@@ -29,4 +29,4 @@ RUN make install
 #open service port
 EXPOSE 9332 9333 19332 19333 19444
 
-CMD ["faithcoind", "--conf=/.faithcoin/faithcoin.conf", "--printtoconsole"]
+CMD ["dalcoind", "--conf=/.dalcoin/dalcoin.conf", "--printtoconsole"]
